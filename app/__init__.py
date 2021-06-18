@@ -12,5 +12,4 @@ def index():
 
 @app.route('/health')
 def health():
-    status_code = flask.Response(status=200)
-    return status_code
+    return render_template('health.html', url=os.getenv("URL"))
