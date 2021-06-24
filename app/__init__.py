@@ -16,3 +16,11 @@ def index():
 @app.route('/health')
 def health():
     return render_template('health.html', url=os.getenv("URL"))
+
+@app.route('/register')
+def register():
+    return 'Registering'
+
+@app.route('/login')
+def login():
+    return 'Login'
