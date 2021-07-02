@@ -8,4 +8,14 @@ services:
         env_file:
             - .env
         volumes:
-            - ./flask.sqlite:/myportfolio/flask.sqlite
+            #volume now binds entire folder
+            - .:/myportfolio
+        depends_on:
+            - db
+            # start db container before web
+
+    db:
+        image: postgres
+        restart: always
+        env_file:
+            - .env
