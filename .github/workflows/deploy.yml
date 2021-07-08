@@ -15,7 +15,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh/
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy-key.pem
-          chmod 600 ~/.ssh/deploy-key.pem
+          sudo chmod 600 ~/.ssh/deploy-key.pem
           cat >> ~/.ssh/config <<END
           Host my-vm
             HostName $SSH_IP
@@ -26,7 +26,7 @@ jobs:
           git config --global user.name "PurpleUltralisk"
           git config --global user.email $GH_EMAIL
           echo "$RSA_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          sudo chmod 600 ~/.ssh/id_rsa
         env:
           RSA_KEY: ${{ secrets.RSA_KEY }}
           GH_EMAIL: ${{ secrets.GH_EMAIL }}
