@@ -23,10 +23,13 @@ jobs:
             IdentityFile ~/.ssh/deploy-key.pem
             StrictHostKeyChecking no
           END
+          echo "$RSA_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_IP: ${{ secrets.SSH_IP }}
+          RSA_KEY: ${{ secrets.RSA_KEY }}
       
       - name: Deploy site 
         run: ssh my-vm 'cd ${{ secrets.PROJECT_ROOT }} && git fetch && git rest --hard origin/master && docker-compose up -d --build'
