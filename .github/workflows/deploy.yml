@@ -34,6 +34,9 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_IP: ${{ secrets.SSH_IP }}
       
+      - name: Test git config
+        run: git config user.name
+      
       - name: Test github connection
         run: ssh -T git@github.com
       
