@@ -26,10 +26,10 @@ jobs:
           echo "$RSA_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
         env:
+          RSA_KEY: ${{ secrets.RSA_KEY }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_IP: ${{ secrets.SSH_IP }}
-          RSA_KEY: ${{ secrets.RSA_KEY }}
       
       - name: Test github connection
         run: ssh -T git@github.com
