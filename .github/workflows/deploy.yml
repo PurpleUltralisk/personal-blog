@@ -23,10 +23,14 @@ jobs:
             IdentityFile ~/.ssh/deploy-key.pem
             StrictHostKeyChecking no
           END
+          git config --global user.name "PurpleUltralisk"
+          git config --global user.email $GH_EMAIL
           echo "$RSA_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          ssh-add ~/.ssh/id_rsa
         env:
           RSA_KEY: ${{ secrets.RSA_KEY }}
+          GH_EMAIL: ${{ secrets.GH_EMAIL }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_IP: ${{ secrets.SSH_IP }}
