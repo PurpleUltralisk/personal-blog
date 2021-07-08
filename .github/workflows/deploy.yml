@@ -31,5 +31,8 @@ jobs:
           SSH_IP: ${{ secrets.SSH_IP }}
           RSA_KEY: ${{ secrets.RSA_KEY }}
       
+      - name: Test github connection
+        run: ssh -T git@github.com
+      
       - name: Deploy site 
         run: ssh my-vm 'cd ${{ secrets.PROJECT_ROOT }} && git fetch && git rest --hard origin/master && docker-compose up -d --build'
