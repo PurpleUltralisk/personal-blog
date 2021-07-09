@@ -16,6 +16,6 @@ healthres=$(curl -f -s -d "username=testing&password=testing" 'http://davidjiang
 healthres=$(echo $healthres | sed 's/^.*Test #/Test #/')
 echo $healthres
 
-healthres=$(curl -f -s 'http://davidjiang.cloud/register' && echo "Test #4: Register page success" || echo "Test #4: Register page failed to load" )
+healthres=$(curl -f -s 'http://davidjiang.cloud/register' && echo "Test #5: Register page success" || echo "Test #4: Register page failed to load" )
 healthres=$(echo $healthres | sed 's/^.*Test #/Test #/')
 echo $healthres
