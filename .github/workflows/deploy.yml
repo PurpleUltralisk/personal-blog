@@ -39,7 +39,7 @@ jobs:
       - name: Container status
         run: ssh my-vm 'cd ${{ secrets.PROJECT_ROOT }} && docker-compose ps'
 
-      - name: Discord Notification
+      - name: Discord NotificationV
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
 
       - name: Check out git repo
@@ -47,3 +47,7 @@ jobs:
 
       - name: Bash Test
         run: bash prod-test.sh
+
+      - name: Backup step
+        if: ${{ failure() }}
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "🚨 Deployment Failed"
